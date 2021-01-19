@@ -1,0 +1,23 @@
+
+.btn-nav{
+    color: #ffffff;
+    background-color: #ff870b;
+    border-color: #f87d02;
+    margin:5px 10px 5px 0px;
+    margin-top: 24px;
+}
+.btn-nav:focus{
+    color: #ffffff;
+    background-color: #2e2e2e;
+    border-color: #1c1c1c;
+}
+.btn-nav:hover{
+    color: #ff870b;
+    border-color: #f87d02;
+    background-color: #d4d4d4;
+}
+.btn-nav:active{
+    color: #ff870b;
+    border-color: #f87d02;
+    background-color: #d4d4d4;
+}

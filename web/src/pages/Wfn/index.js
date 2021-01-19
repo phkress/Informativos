@@ -3,8 +3,11 @@ import CardText from '../../components/CardText'
 import Acordiao from '../../components/Acordiao'
 import ListaBotao from '../../components/ListaBotao'
 
-function Home() {
-  const buttons = [{titulo:'WIPI',link:'wipi'},{titulo:'WFN',link:'wfn'}];
+function Wfn() {
+  const buttons = [
+    {titulo:'BU Corporativo',link:'wipi'},
+    {titulo:'BU Residencial',link:'wfn'},
+];
   const acordiaoConteudo = [{titulo:'Teste1',text:'lorem ipsulo2'},{titulo:'Teste2',text:'lorem ipsulo2'},{titulo:'Teste1',text:'lorem ipsulo2'},{titulo:'Teste2',text:'lorem ipsulo2'}];
 
   return (
@@ -20,4 +23,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Wfn;
