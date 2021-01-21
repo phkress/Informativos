@@ -4,7 +4,7 @@ import api from '../../services/api'
 import './styles.css';
 
 
-function Editor() {
+function BuLista() {
 
   const [infoPag, setInfoPag] = useState([]);
 
@@ -25,4 +25,4 @@ function Editor() {
   );
 }
 
-export default Editor;
+export default BuLista;

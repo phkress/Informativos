@@ -1,7 +1,14 @@
 import { Table } from 'react-bootstrap/'
+import { useHistory } from 'react-router-dom';
+import './styles.css';
 
 function TableBu(props) {
+    const history = useHistory();
     const itens = props.list;
+    
+    function editarBu(id){
+        history.push(`/bu/${id}`); 
+    }
 
     return (
         <Table responsive striped bordered hover size="lg">
@@ -19,7 +26,7 @@ function TableBu(props) {
                         <td>{i}</td>
                         <td>{item.bu}</td>
                         <td>AQUI VAI ENTARA O LINK</td>
-                        <td>Editar</td>
+                        <td className="pointer" onClick={()=>editarBu(item._id)}>Editar</td>
                     </tr>)}
             </tbody>
         </Table>

@@ -3,7 +3,7 @@ import Home from './pages/Home';
 import Generic from './pages/Generic';
 import Wipi from './pages/Wipi';
 import Wfn from './pages/Wfn';
-import Editor from './pages/Editor';
+import BuLista from './pages/BuLista';
 
 const Routes = () =>{
     return(
@@ -17,7 +17,7 @@ const Routes = () =>{
             <Route component={Generic} path="/wfn/residencial" exact/>
             <Route component={Wipi} path="/wipi" exact/>
             <Route component={Wfn} path="/wfn" exact/>
-            <Route component={Editor} path="/editor" exact/>
+            <Route component={BuLista} path="/bu" exact/>
         </Switch>
     )
 }
