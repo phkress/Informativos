@@ -1,41 +1,28 @@
-import { Table } from 'react-bootstrap/'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import TabelaBu from '../../components/TableBus'
+import api from '../../services/api'
 import './styles.css';
 
+
 function Editor() {
-    return (
-        <>
-            <Table striped bordered hover size="sm">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Username</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td colSpan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</Table>
-        </>
-    );
+
+  const [infoPag, setInfoPag] = useState([]);
+
+  useEffect(() => {
+    loadProcedimentos();
+    // eslint-disable-next-line
+  }, []);
+
+  async function loadProcedimentos() {
+    const response = await api.get('/bu');
+    console.table(response.data)
+    setInfoPag(response.data);
+  }
+  return (
+    <>
+      <TabelaBu list={infoPag}/>
+    </>
+  );
 }
 
 export default Editor;
