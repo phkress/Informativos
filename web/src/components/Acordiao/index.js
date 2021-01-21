@@ -9,7 +9,7 @@ function Acordiao(props) {
             {list.map((conteudo, i) =>                               
                     <Card key={i}> 
                         <Accordion.Toggle as={Card.Header} eventKey={i} className="AcordiaoHead">
-                            {conteudo.titulo} {i}
+                        {i} - {conteudo.titulo}
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey={i}>
                             <Card.Body>
