@@ -8,7 +8,12 @@ const Routes = () =>{
     return(
         <Switch>
             <Route component={Home} path="/" exact/>
-            <Route component={Generic} path="/wipi/Corporativo" exact/>
+            <Route component={Generic} path="/wipi/corporativo" exact/>
+            <Route component={Generic} path="/wipi/retail" exact/>
+            <Route component={Generic} path="/wipi/vip" exact/>
+            <Route component={Generic} path="/wipi/residencial" exact/>
+            <Route component={Generic} path="/wfn/corporativo" exact/>
+            <Route component={Generic} path="/wfn/residencial" exact/>
             <Route component={Wipi} path="/wipi" exact/>
             <Route component={Wfn} path="/wfn" exact/>
         </Switch>

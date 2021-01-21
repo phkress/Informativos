@@ -5,7 +5,7 @@ function Acordiao(props) {
     const list = props.conteudo;
 
     return (
-        <Accordion defaultActiveKey="0">
+        <Accordion>
             {list.map((conteudo, i) =>                               
                     <Card key={i}> 
                         <Accordion.Toggle as={Card.Header} eventKey={i} className="AcordiaoHead">
@@ -18,7 +18,6 @@ function Acordiao(props) {
                         </Accordion.Collapse>
                     </Card>
             )}
-
         </Accordion>
     );
 }

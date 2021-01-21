@@ -5,8 +5,8 @@ import ListaBotao from '../../components/ListaBotao'
 
 function Wfn() {
   const buttons = [
-    {titulo:'BU Corporativo',link:'wipi'},
-    {titulo:'BU Residencial',link:'wfn'},
+    {titulo:'BU Corporativo',link:'wfn/corporativo'},
+    {titulo:'BU Residencial',link:'wfn/residencial'},
 ];
   const acordiaoConteudo = [{titulo:'Teste1',text:'lorem ipsulo2'},{titulo:'Teste2',text:'lorem ipsulo2'},{titulo:'Teste1',text:'lorem ipsulo2'},{titulo:'Teste2',text:'lorem ipsulo2'}];
 
