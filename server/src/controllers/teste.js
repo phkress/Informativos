@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 module.exports = function(app){
   let api = {};
-   let model = mongoose.model('home');
+   let model = mongoose.model('bu');
 
   api.teste = (req,res)=>{
     model.find()
@@ -14,7 +14,7 @@ module.exports = function(app){
     });
   },
   api.adiciona = (req,res)=>{
-    model.create({procedimentos:'teste', informacoes:[]})
+    model.create(req.body)
       .then(function(pop){
         res.json(pop);
       }, err=>{
