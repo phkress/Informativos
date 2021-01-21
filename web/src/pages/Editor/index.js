@@ -1,43 +1,40 @@
-import ReactQuill from "react-quill";
-import 'react-quill/dist/quill.snow.css';
-import 'react-quill/dist/quill.bubble.css';
-import { Jumbotron, Container } from 'react-bootstrap/'
+import { Table } from 'react-bootstrap/'
 import { useState } from 'react';
 import './styles.css';
 
 function Editor() {
-    const [text, setText] = useState({ text: 'testes' });
-
-    function handleChange(value) {
-        console.log(value);
-        setText({ text: value });
-    }
-    const modulo = {
-        toolbar: [
-            [{ 'header': [1, 2, 3, 4, 5, 6, false] }, { 'size': ['small', false, 'large', 'huge'] }],
-            [{ 'font': [] }],
-            ['bold', 'italic', 'underline', 'strike', 'link', 'blockquote'],
-            [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }, { 'align': [] }],
-            [{ 'color': [] }, { 'background': [] }, 'image', 'code-block'],
-            ['clean']
-        ]
-    }
-
     return (
-        <Container>
-            <Jumbotron style={{ paddingTop: '1rem' }}>
-                <div className="editor">
-                    <div className="text-editor"
-                        dangerouslySetInnerHTML={{ __html: text.text }}>
-                    </div>
-                    <ReactQuill
-                        value={text.text}
-                        onChange={handleChange}
-                        modules={modulo}
-                    />
-                </div>
-            </Jumbotron>
-        </Container>
+        <>
+            <Table striped bordered hover size="sm">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Username</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td colSpan="2">Larry the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</Table>
+        </>
     );
 }
 

@@ -1,4 +1,3 @@
-import { Jumbotron, Container} from 'react-bootstrap/'
 import { useHistory } from 'react-router-dom';
 import CardText from '../../components/CardText'
 import CardObs from '../../components/CardObs'
@@ -19,8 +18,7 @@ function Generic() {
     },[]);
 
   return (
-    <Container>
-      <Jumbotron style={{paddingTop:'1rem'}}>
+    <>
         <h1 className="text-center">BU {pagInfo.pagina} - {pagInfo.empressa} </h1> 
         <CardText/>
         <br/>
@@ -33,8 +31,7 @@ function Generic() {
         <br/>
         <h3 className="text-center">Comercial - {pagInfo.empressa}</h3>
         <Acordiao conteudo={acordiaoConteudo} />
-      </Jumbotron>
-    </Container>
+      </>
   );
 }
 
