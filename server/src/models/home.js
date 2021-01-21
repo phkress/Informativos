@@ -2,10 +2,14 @@ const mongoose = require('mongoose');
 
 const schema = mongoose.Schema({
 
-  name:{
+  procedimentos:{
     type: String,
     required: true
-  }
+  },
+  informacoes:{
+    type: Array,
+    required: false
+  },
 });
 
-mongoose.model('pops', schema);
+mongoose.model('home', schema);

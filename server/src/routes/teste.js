@@ -4,5 +4,6 @@ module.exports = function(app){
 
     app.route('/v1/teste')
        .get(api.teste)
+       .post(api.adiciona)
   };
   
