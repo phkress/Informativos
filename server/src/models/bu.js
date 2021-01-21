@@ -7,7 +7,7 @@ const schema = mongoose.Schema({
   },
   empresa:{
     type:String,
-    required:true
+    required:false
   },
   procedimentos:{
     type: String,
