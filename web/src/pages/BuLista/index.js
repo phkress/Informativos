@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import TabelaBu from '../../components/TableBus'
 import api from '../../services/api'
 import './styles.css';
@@ -7,6 +8,7 @@ import './styles.css';
 function BuLista() {
 
   const [infoPag, setInfoPag] = useState([]);
+  const { id } = useParams();
 
   useEffect(() => {
     loadProcedimentos();
@@ -20,7 +22,10 @@ function BuLista() {
   }
   return (
     <>
-      <TabelaBu list={infoPag}/>
+      {id ? 'ok':
+        <TabelaBu list={infoPag}/>
+        }
+      
     </>
   );
 }
