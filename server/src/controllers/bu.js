@@ -12,6 +12,16 @@ module.exports = function(app){
       console.log(error);
       res.sendStatus(500);
     });
+  },
+  api.findById = (req,res) =>{
+    model.findById(req.params.id)
+    .then(function(data) {
+      if (!data) throw new Error('Bu não encontrado');
+      res.json(data);
+    }, function(error) {
+      console.log(error);
+      res.sendStatus(500);
+    });
   }
   return api;
 
