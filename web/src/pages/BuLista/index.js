@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import TabelaBu from '../../components/TableBus'
 import api from '../../services/api'
 import './styles.css';
@@ -7,8 +6,7 @@ import './styles.css';
 
 function BuLista() {
 
-  const [infoPag, setInfoPag] = useState([]);
-  const { id } = useParams();
+  const [buList, setBuList] = useState([]);
 
   useEffect(() => {
     loadProcedimentos();
@@ -17,15 +15,12 @@ function BuLista() {
 
   async function loadProcedimentos() {
     const response = await api.get('/bu');
-    console.table(response.data)
-    setInfoPag(response.data);
+    setBuList(response.data);
   }
+
   return (
     <>
-      {id ? 'ok':
-        <TabelaBu list={infoPag}/>
-        }
-      
+        <TabelaBu list={buList} />
     </>
   );
 }

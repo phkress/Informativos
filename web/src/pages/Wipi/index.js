@@ -1,8 +1,6 @@
 import CardText from '../../components/CardText'
 import Acordiao from '../../components/Acordiao'
 import ListaBotao from '../../components/ListaBotao'
-import api from '../../services/api'
-import { useEffect, useState } from 'react';
 
 function Wipi() {
   const buttons = [
@@ -12,18 +10,7 @@ function Wipi() {
     { titulo: 'BU Residencial', link: 'wipi/residencial' },
   ];
   const acordiaoConteudo = [{ titulo: 'Teste1', text: 'lorem ipsulo2' }, { titulo: 'Teste2', text: 'lorem ipsulo2' }, { titulo: 'Teste1', text: 'lorem ipsulo2' }, { titulo: 'Teste2', text: 'lorem ipsulo2' }];
-  const [infoPag, setInfoPag] = useState({ procedimentos: '', informacoes: [] });
-
-  useEffect(() => {
-    loadProcedimentos();
-    // eslint-disable-next-line
-  }, []);
-
-  async function loadProcedimentos() {
-    const response = await api.get('/teste');
-    setInfoPag(response);
-  }
-
+  
   return (
     <>
       <h1 className="text-center">Procedimentos</h1>
