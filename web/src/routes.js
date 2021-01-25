@@ -18,7 +18,7 @@ const Routes = () =>{
             <Route component={Generic} path="/wfn/residencial" exact/>
             <Route component={Wipi} path="/wipi" exact/>
             <Route component={Wfn} path="/wfn" exact/>
-            <Route component={BuEditor} path="/bu/editor/:id" exact/>
+            <Route component={BuEditor} path="/bu/:id" exact/>
             <Route component={BuLista} path="/bu" exact/>
         </Switch>
     )

@@ -7,7 +7,7 @@ function TableBu(props) {
     const itens = props.list;
     
     function editarBu(id){
-        history.push(`/bu/editor/${id}`); 
+        history.push(`/bu/${id}`); 
     }
 
     return (
