@@ -7,7 +7,7 @@ const schema = mongoose.Schema({
   },
   empresa:{
     type:String,
-    required:false
+    required:true
   },
   procedimentos:{
     type: String,
@@ -17,22 +17,10 @@ const schema = mongoose.Schema({
     type: String,
     required: true
   },
-  informacoes:{
+  tratativas:{
     type: Array,
-    required: false
-  },
-  tecnico:{
-    type: Array,
-    required: false
-  },
-  financeiro:{
-    type: Array,
-    required: false
-  },
-  comercial:{
-    type: Array,
-    required: false
-  },
+    required: true
+  }
 });
 
 mongoose.model('bu', schema);

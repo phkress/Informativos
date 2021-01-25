@@ -25,7 +25,7 @@ function TableBu(props) {
                     <tr key={i}>
                         <td>{i}</td>
                         <td>{item.bu}</td>
-                        <td>AQUI VAI ENTARA O LINK</td>
+                        <td>{item.link}</td>
                         <td className="pointer" onClick={()=>editarBu(item._id)}>Editar</td>
                     </tr>)}
             </tbody>
