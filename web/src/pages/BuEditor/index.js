@@ -44,6 +44,10 @@ function BuEditor() {
         setBuItem({ ...buItem, tratativas: itemList })
         handleChange('');
     }
+    const handlesCancel = () =>{
+        setEditor({});
+        handleChange('');
+    }
 
     return (
         <>
@@ -63,6 +67,7 @@ function BuEditor() {
                         modules={modulo}
                     />
                     <Button onClick={() => { handlesSave() }}>Salvar</Button>
+                    <Button onClick={() => { handlesCancel() }}>Cancelar</Button>
                 </div>
                 :
                 <div>
