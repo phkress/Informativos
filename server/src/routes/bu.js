@@ -6,6 +6,7 @@ module.exports = function(app){
        .get(api.index);
 
     app.route('/v1/bu/:id')
-        .get(api.findById);
+        .get(api.findById)
+        .put(api.atualiza)
   };
   

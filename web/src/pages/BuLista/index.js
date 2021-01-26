@@ -17,7 +17,7 @@ function BuLista() {
     const response = await api.get('/bu');
     setBuList(response.data);
   }
-
+  
   return (
     <>
         <TabelaBu list={buList} />

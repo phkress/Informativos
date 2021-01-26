@@ -1,10 +1,15 @@
-import { Table, Card, Button } from 'react-bootstrap/'
+import { Table, Card, Button, InputGroup, FormControl } from 'react-bootstrap/'
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 import 'react-quill/dist/quill.bubble.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import api from '../../services/api'
+import './styles.css';
 
 function BuEditor() {
+    const [text, setText] = useState({ text: '' });
+    const [editor, setEditor] = useState({ tipo: '', titulo: '', text: '', index: undefined })
     const [buItem, setBuItem] = useState({
         bu: 'WIPI Corporativo',
         empresa: 'WIPI',
@@ -16,6 +21,8 @@ function BuEditor() {
                 { tipo: 'comercial', titulo: 'teste-Titulo', texto: 'teste-Texto' }
             ]
     })
+    const { id } = useParams();
+
     const modulo = {
         toolbar: [
             [{ 'header': [1, 2, 3, 4, 5, 6, false] }, { 'size': ['small', false, 'large', 'huge'] }],
@@ -26,55 +33,100 @@ function BuEditor() {
             ['clean']
         ]
     }
+    useEffect(() => {
+        loadBu();
+        // eslint-disable-next-line
+    }, []);
 
-    const [text, setText] = useState({ text: '' });
-    const [editor, setEditor] = useState({ tipo: '', titulo: '', text: '', index: '' })
+    async function loadBu() {
+        const response = await api.get(`/bu/${id}`);
+        setBuItem(response.data);
+    }
+    async function saveBu() {
+        await api.put(`/bu/${id}`, buItem);
+    }
 
     function handleChange(value) {
         setText({ text: value });
     }
-
     const handlesEditor = (item, i) => {
         handleChange(item.texto);
         setEditor({ ...item, index: i })
     }
+    const handlesEditorProcedimento = () => {
+        handleChange(buItem.procedimentos);
+    }
+    const handlesEditorTitulo = (event) => {
+        const item = editor;
+        item['titulo'] = event.target.value;
+        setEditor(item)
+    }
     const handlesSave = () => {
+        if (editor.index !== undefined) {
+            editArray();
+        } else {
+            editTexto();
+        }
+        saveBu();
+        handleChange('');
+    }
+    const handlesCancel = () => {
+        setEditor({ tipo: '', titulo: '', text: '', index: undefined });
+        handleChange('');
+    }
+    const editArray = () => {
         var itemList = buItem.tratativas;
         itemList[editor.index] = { tipo: editor.tipo, titulo: editor.titulo, texto: text.text }
         setBuItem({ ...buItem, tratativas: itemList })
-        handleChange('');
     }
-    const handlesCancel = () =>{
-        setEditor({});
-        handleChange('');
+    const editTexto = () => {
+        const texto = text.text;
+        var item = buItem;
+        item['procedimentos'] = texto;
+        setBuItem(item);
     }
 
     return (
         <>
-
             <h1>Bu {buItem.bu}</h1>
             <h2>Empresa: {buItem.empresa}</h2>
             <h2>Link de acesso localhost{buItem.link}</h2>
             <br />
             {text.text !== "" ?
-                <div className="editor">
-                    <div className="text-editor"
-                        dangerouslySetInnerHTML={{ __html: text.text }}>
+                <div >
+                    <InputGroup className="mb-3">
+                        <InputGroup.Prepend>
+                            <InputGroup.Text id="basic-addon1">Titulo</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <FormControl
+                            placeholder="Titulo do procedimento"
+                            aria-label="UsernTituloame"
+                            aria-describedby="basic-addon1"
+                            type="text"
+                            onChange={handlesEditorTitulo}
+                            defaultValue={ editor.titulo }
+                        />
+                    </InputGroup>
+                    <Card>
+                        <Card.Body dangerouslySetInnerHTML={{ __html: text.text }}></Card.Body>
+                    </Card>
+                    <div className="editorTexto">
+                        <ReactQuill
+                            value={text.text}
+                            onChange={handleChange}
+                            modules={modulo}
+                        />
                     </div>
-                    <ReactQuill
-                        value={text.text}
-                        onChange={handleChange}
-                        modules={modulo}
-                    />
-                    <Button onClick={() => { handlesSave() }}>Salvar</Button>
-                    <Button onClick={() => { handlesCancel() }}>Cancelar</Button>
+
+                    <Button variant="success" onClick={() => { handlesSave() }}>Salvar</Button>{' '}
+                    <Button variant="danger" onClick={() => { handlesCancel() }}>Cancelar</Button>
                 </div>
                 :
                 <div>
                     <br />
                     <br />
                     <Card>
-                        <Card.Body>{buItem.procedimentos}</Card.Body>
+                        <Card.Body className="pointer" onClick={() => { handlesEditorProcedimento() }} dangerouslySetInnerHTML={{ __html: buItem.procedimentos }}></Card.Body>
                     </Card>
                     <br />
                     <Table striped bordered hover size="sm">
