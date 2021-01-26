@@ -94,6 +94,8 @@ function BuEditor() {
             <br />
             {text.text !== "" ?
                 <div >
+                    { editor.index !== undefined ?
+                    
                     <InputGroup className="mb-3">
                         <InputGroup.Prepend>
                             <InputGroup.Text id="basic-addon1">Titulo</InputGroup.Text>
@@ -107,6 +109,7 @@ function BuEditor() {
                             defaultValue={ editor.titulo }
                         />
                     </InputGroup>
+                    :""}
                     <Card>
                         <Card.Body dangerouslySetInnerHTML={{ __html: text.text }}></Card.Body>
                     </Card>
