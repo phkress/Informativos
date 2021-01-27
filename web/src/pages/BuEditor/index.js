@@ -1,4 +1,4 @@
-import { Table, Card, Button, InputGroup, FormControl } from 'react-bootstrap/'
+import { Table, Card, Button, InputGroup, FormControl, Form } from 'react-bootstrap/'
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 import 'react-quill/dist/quill.bubble.css';
@@ -61,6 +61,10 @@ function BuEditor() {
         item['titulo'] = event.target.value;
         setEditor(item)
     }
+    const handlesEditorTipo = (event) => {
+        setEditor({ ...editor, ['tipo']: event.target.value })
+        console.log(editor)
+    }
     const handlesSave = () => {
         if (editor.index !== undefined) {
             editArray();
@@ -73,6 +77,10 @@ function BuEditor() {
     const handlesCancel = () => {
         setEditor({ tipo: '', titulo: '', text: '', index: undefined });
         handleChange('');
+    }
+    const handlesAdd = () => {
+        handleChange('Coloque o texto aqui!');
+        setEditor({ tipo: 'financeiro', titulo: 'Escreva o titulo aqui', text: '', index: buItem.tratativas.length });
     }
     const editArray = () => {
         var itemList = buItem.tratativas;
@@ -94,22 +102,37 @@ function BuEditor() {
             <br />
             {text.text !== "" ?
                 <div >
-                    { editor.index !== undefined ?
-                    
-                    <InputGroup className="mb-3">
-                        <InputGroup.Prepend>
-                            <InputGroup.Text id="basic-addon1">Titulo</InputGroup.Text>
-                        </InputGroup.Prepend>
-                        <FormControl
-                            placeholder="Titulo do procedimento"
-                            aria-label="UsernTituloame"
-                            aria-describedby="basic-addon1"
-                            type="text"
-                            onChange={handlesEditorTitulo}
-                            defaultValue={ editor.titulo }
-                        />
-                    </InputGroup>
-                    :""}
+                    {editor.index !== undefined ?
+                        <div>
+                            <InputGroup className="mb-3">
+                                <InputGroup.Prepend>
+                                    <InputGroup.Text id="basic-addon1">Titulo</InputGroup.Text>
+                                </InputGroup.Prepend>
+                                <FormControl
+                                    placeholder="Titulo do procedimento"
+                                    aria-label="UsernTituloame"
+                                    aria-describedby="basic-addon1"
+                                    type="text"
+                                    onChange={handlesEditorTitulo}
+                                    defaultValue={editor.titulo}
+                                />
+                            </InputGroup>
+                            <Form>
+                                <Form.Group controlId="exampleForm.SelectCustomSizeSm">
+                                    <Form.Label>Categoria</Form.Label>
+                                    <Form.Control as="select" size="sm"
+                                        onChange={handlesEditorTipo}
+                                        value={editor.tipo}
+                                        custom
+                                    >
+                                        <option>financeiro</option>
+                                        <option>comercial</option>
+                                        <option>tecnico</option>
+                                    </Form.Control>
+                                </Form.Group>
+                            </Form>
+                        </div>
+                        : ""}
                     <Card>
                         <Card.Body dangerouslySetInnerHTML={{ __html: text.text }}></Card.Body>
                     </Card>
@@ -151,6 +174,7 @@ function BuEditor() {
                                 </tr>)}
                         </tbody>
                     </Table>
+                    <Button onClick={() => handlesAdd()}>Adicionar</Button>
                 </div>
             }
         </>
