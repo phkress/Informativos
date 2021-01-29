@@ -8,7 +8,7 @@ function ButtonNav(props) {
     const history = useHistory();
     
     function goToLink(){
-      history.push(`/${props.link}`); 
+      history.push(`${props.link}`); 
     }
 
     return (

@@ -128,6 +128,7 @@ function BuEditor() {
                                         <option>financeiro</option>
                                         <option>comercial</option>
                                         <option>tecnico</option>
+                                        <option>condominio</option>
                                     </Form.Control>
                                 </Form.Group>
                             </Form>

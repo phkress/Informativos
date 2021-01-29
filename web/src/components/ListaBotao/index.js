@@ -5,7 +5,7 @@ function ListaBotao(props) {
     
   return (
       <center>
-          {links.map((link,i)=> <ButonNav key={i} name={link.titulo} link={link.link} />)}
+          {links.map((link,i)=> <ButonNav key={i} name={link.bu} link={link.link} />)}
       </center>
   );
 }

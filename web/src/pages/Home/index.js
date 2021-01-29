@@ -3,7 +3,7 @@ import Acordiao from '../../components/Acordiao'
 import ListaBotao from '../../components/ListaBotao'
 
 function Home() {
-  const buttons = [{titulo:'WIPI',link:'wipi'},{titulo:'WFN',link:'wfn'}];
+  const buttons = [{bu:'WIPI',link:'wipi'},{bu:'WFN',link:'wfn'}];
   const acordiaoConteudo = [{titulo:'Teste1',text:'lorem ipsulo2'},{titulo:'Teste2',text:'lorem ipsulo2'},{titulo:'Teste1',text:'lorem ipsulo2'},{titulo:'Teste2',text:'lorem ipsulo2'}];
 
   return (
