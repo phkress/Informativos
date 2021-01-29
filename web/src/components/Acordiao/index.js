@@ -12,8 +12,7 @@ function Acordiao(props) {
                         {i} - {conteudo.titulo}
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey={i}>
-                            <Card.Body>
-                                {conteudo.text}
+                            <Card.Body dangerouslySetInnerHTML={{ __html: conteudo.texto }}>
                             </Card.Body>
                         </Accordion.Collapse>
                     </Card>
