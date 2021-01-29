@@ -63,7 +63,6 @@ function BuEditor() {
     }
     const handlesEditorTipo = (event) => {
         setEditor({ ...editor, ['tipo']: event.target.value })
-        console.log(editor)
     }
     const handlesSave = () => {
         if (editor.index !== undefined) {
