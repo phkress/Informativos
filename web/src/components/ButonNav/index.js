@@ -8,7 +8,11 @@ function ButtonNav(props) {
     const history = useHistory();
     
     function goToLink(){
-      history.push(`${props.link}`); 
+      if(!props.id){
+        history.push(`${props.link}`);
+      } else{
+        history.push(`${props.link}/${props.id}`);
+      }
     }
 
     return (
