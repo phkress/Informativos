@@ -62,6 +62,7 @@ function BuEditor() {
         setEditor(item)
     }
     const handlesEditorTipo = (event) => {
+        // eslint-disable-next-line
         setEditor({ ...editor, ['tipo']: event.target.value })
     }
     const handlesSave = () => {
