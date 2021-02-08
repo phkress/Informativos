@@ -5,13 +5,13 @@ function Acordiao(props) {
     const list = props.conteudo;
 
     return (
-        <Accordion>
+        <Accordion defaultActiveKey="0">
             {list.map((conteudo, i) =>                               
                     <Card key={i}> 
-                        <Accordion.Toggle as={Card.Header} eventKey={i} className="AcordiaoHead">
-                        {i} - {conteudo.titulo}
+                        <Accordion.Toggle as={Card.Header} eventKey={i+1} className="AcordiaoHead">
+                        {i+1} - {conteudo.titulo}
                         </Accordion.Toggle>
-                        <Accordion.Collapse eventKey={i}>
+                        <Accordion.Collapse eventKey={i+1}>
                             <Card.Body dangerouslySetInnerHTML={{ __html: conteudo.texto }}>
                             </Card.Body>
                         </Accordion.Collapse>
