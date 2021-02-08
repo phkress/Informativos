@@ -5,17 +5,26 @@ import { useEffect, useState } from 'react';
 import api from '../../services/api'
 
 function Wfn() {
-  // const buttons = [
-  //   { titulo: 'BU Corporativo', link: 'wfn/corporativo' },
-  //   { titulo: 'BU Residencial', link: 'wfn/residencial' },
-  // ];
-  const acordiaoConteudo = [{ titulo: 'Teste1', text: 'lorem ipsulo2' }, { titulo: 'Teste2', text: 'lorem ipsulo2' }, { titulo: 'Teste1', text: 'lorem ipsulo2' }, { titulo: 'Teste2', text: 'lorem ipsulo2' }];
+  const [acordiaoConteudo, setAcordiaoConteudo] = useState([]);
   const [buList, setBuList] = useState([]);
-  
+  const [bu,setBu] = useState({
+    bu: "",
+    empresa: "",
+    link: "",
+    procedimentos: "",
+    tratativas: []})
+
   useEffect(() => {
     loadProcedimentos();
     // eslint-disable-next-line
   }, []);
+
+  useEffect(() => { 
+    if(buList.length) {
+      setAcordiao()
+    }    
+    // eslint-disable-next-line
+  }, [buList]);
 
   async function loadProcedimentos() {
     const response = await api.get('/bu');
@@ -25,13 +34,32 @@ function Wfn() {
   function categoria(value){
     return value.empresa === 'WFN'
   }
+  function buName(value){
+    return value.bu === 'WFN'
+  }
+
+  function setAcordiao(){
+    const bu = buList.filter(buName);
+    setBu(bu[0]);
+    var condominio = [];
+
+    if(bu.length){
+      condominio = bu[0].tratativas.filter(function(value){return value.tipo === 'condominio'});
+    }
+    setAcordiaoConteudo(condominio);
+  }
+
   return (
     <>
       <h1 className="text-center">Procedimentos</h1>
-      <CardText />
+      <CardText texto={bu.procedimentos}/>
       <ListaBotao links={buList} />
-      <h1 className="text-center">Outras Informações</h1>
-      <Acordiao conteudo={acordiaoConteudo} />
+      { acordiaoConteudo === [] ? '':
+      <div>
+        <h1 className="text-center">Codomínios</h1>
+        <Acordiao conteudo={acordiaoConteudo} />
+      </div>
+      }
     </>
   );
 }
