@@ -1,0 +1,33 @@
+version: "3.3"
+services:
+  server:
+    build: ./server
+    depends_on:
+      - db
+    networks: 
+      - info
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./server:/usr/app
+  web:
+    build: ./web
+    depends_on: 
+      - server
+    networks:
+      - info
+    ports:
+      - "3000:3000"  
+    volumes:
+      - ./web:/usr/app
+  db:
+    image: mongo:latest
+    container_name: db
+    restart: always
+    networks: 
+      - info
+    ports:
+      - 27017:27017
+
+networks: 
+  info:
